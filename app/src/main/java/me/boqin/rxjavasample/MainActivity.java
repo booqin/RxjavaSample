@@ -3,6 +3,7 @@ package me.boqin.rxjavasample;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import io.reactivex.Observable;
 import io.reactivex.Scheduler;
 import io.reactivex.functions.Consumer;
@@ -18,6 +19,18 @@ public class MainActivity extends AppCompatActivity {
 
         schedulerTest(Schedulers.io());
         //        schedulerTest(Schedulers.single());
+        findViewById(R.id.bt).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    // ANR test
+                    Thread.sleep(10000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
     }
 
     private void schedulerTest(Scheduler scheduler) {
